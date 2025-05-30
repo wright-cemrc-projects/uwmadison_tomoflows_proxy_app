@@ -2,18 +2,12 @@
 cluster:
   - "cluster"
 form:
-  - version 
   - auto_accounts
   - bc_num_hours
   - num_cores
   - node_type
   - bc_email_on_started
 attributes:
-  version: 
-    widget: select
-    label: "MATLAB version"
-    options:
-      - ["2024b", "matlab/r2024b"]
   num_cores:
     widget: "number_field"
     label: "Number of cores"
