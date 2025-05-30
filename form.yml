@@ -1,0 +1,41 @@
+---
+cluster:
+  - "cluster"
+form:
+  - version 
+  - auto_accounts
+  - bc_num_hours
+  - num_cores
+  - node_type
+  - bc_email_on_started
+attributes:
+  version: 
+    widget: select
+    label: "MATLAB version"
+    options:
+      - ["2024b", "matlab/r2024b"]
+  num_cores:
+    widget: "number_field"
+    label: "Number of cores"
+    value: 1
+    help: |
+      Number of cores on node type (4 GB per core unless requesting whole
+      node). Leave blank if requesting full node.
+    min: 1
+    max: 96
+    step: 1
+  node_type:
+      widget: select
+      label: "Node type"
+      help: |
+        - **CPU desktop** - (*64 cores*) Desktop without NVIDIA GPU. 
+        - **GPU desktop** - (*64 cores*) Desktop with NVIDIA A5000 GPU.
+      options:
+        - [
+            "CPU desktop",     "ood_cpu",
+            data-min-num-cores: 1,
+          ]
+        - [
+            "GPU desktop", "ood_gpu",
+            data-min-num-cores: 1,
+          ]

@@ -1,0 +1,22 @@
+<%-
+
+  ppn = num_cores.blank? ? 64 : num_cores.to_i
+
+  case node_type
+  when "ood_gpu"
+    slurm_args = [ "--ntasks-per-node", "#{ppn}", "--partition", "ood_gpu", "--mem-per-cpu", "1gb" ]
+  when "ood_cpu"
+    slurm_args = [ "--ntasks-per-node", "#{ppn}", "--partition", "ood_cpu", "--mem-per-cpu", "1gb" ]
+  else
+    err_msg = "Unknown queue"
+    raise(StandardError, err_msg) 
+  end
+%>
+---
+batch_connect:
+  template: basic
+script:
+  native:
+  <%- slurm_args.each do |arg| %>
+    - "<%= arg %>"
+  <%- end %>
