@@ -1,10 +1,13 @@
 #!/bin/bash
 
+# These need to be setup to match a local installation of TomoFlows
 cd $HOME
+APP_DIR=github/TomoFlows
+cd $APP_DIR
 
-# TODO
 # source the python environment
 # start the application on the correct ports
 
-# source /mnt/hpc_users/share/resources/matlab/matlab-proxy/venv/bin/activate
-# matlab-proxy-app
+echo "Starting TomoFlows on port ${port}"
+source env/bin/activate
+python manage.py runserver 0.0.0.0:${port}

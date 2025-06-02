@@ -3,13 +3,10 @@
 [[ $(type -t module) == "function" ]] && export -f module
 
 # Restrict the port range
-backend_port=$(find_port ${host} 5000 6000)
-frontend_port=$(find_port ${host} 5000 6000)
+port=$(find_port ${host} 5000 6000)
 
 # Export both ports to be used by TomoFlows in startup
-export TF_BACKEND_PORT=$backend_port
-export TF_FRONTEND_PORT=$frontend_port
+export DJANGO_PORT=$port
 
-# Do we need some remapped URLs?
-# export MWI_BASE_URL="/node/$host/$port/"
-# export MWI_APP_PORT=$port
+export MWI_BASE_URL="/node/$host/$port/"
+export MWI_APP_PORT=$port
